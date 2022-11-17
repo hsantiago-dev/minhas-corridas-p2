@@ -162,3 +162,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# migrations
+app/migrations/0001_initial.py
