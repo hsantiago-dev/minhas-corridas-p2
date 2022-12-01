@@ -18,6 +18,7 @@ urlpatterns = [
     path('insert_user/', views.insert_user, name='insert_user'),
     path('insert_race/', views.insert_race, name='insert_race'),
     path('edit_race/<int:id_race>/', views.edit_race, name='edit_race'),
+    path('update_race/<int:id_race>/', views.update_race, name='update_race'),
     path('mark_interest/<int:id_race>/', views.mark_interest, name='mark_interest'),
     path('subscription/<int:id_race>/', views.subscription, name='subscription'),
     path('undo_interaction/<int:id_race>/', views.undo_interaction, name='undo_interaction'),

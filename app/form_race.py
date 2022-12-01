@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+from django import forms
 from app.models import Race
 
 
@@ -17,3 +18,8 @@ class FormRace(ModelForm):
             , 'registration_link'
             , 'city'
         ]
+        widgets = {
+            'registration_deadline': forms.DateInput(attrs={'type': 'date'}),
+            'start_date': forms.DateInput(attrs={'type': 'date'}),
+            'start_hour': forms.TimeInput(attrs={'type': 'time'}),
+        }

@@ -72,26 +72,41 @@ def registration_race(request):
 
 @login_required
 def insert_race(request):
+
     request.POST._mutable = True
     request.POST['creator_user'] = request.user.id
 
     form = FormRace(request.POST or None)
     if form.is_valid():
         form.save()
-        return redirect('index')
+        return redirect('races_created')
 
-    # return redirect('registration_race')
     return render(request, 'registration_race.html', {'form': form})
 
 
 @login_required
 def edit_race(request, id_race):
-    # TODO - Implementar a edição de uma corrida
-    data = {}
+
+    data = dict()
     data['race'] = Race.objects.get(pk=id_race)
     data['form'] = FormRace(instance=data['race'])
 
     return render(request, 'registration_race.html', data)
+
+
+@login_required
+def update_race(request, id_race):
+
+    request.POST._mutable = True
+    request.POST['creator_user'] = request.user.id
+
+    data = dict()
+    data['race'] = Race.objects.get(pk=id_race)
+    form = FormRace(request.POST or None, instance=data['race'])
+
+    if form.is_valid():
+        form.save()
+        return redirect('races_created')
 
 
 @login_required
@@ -104,7 +119,7 @@ def mark_interest(request, id_race):
         interaction = Interaction(user=request.user, race=Race.objects.get(pk=id_race), interaction='INTERESTED')
         interaction.save()
 
-    return redirect('index')
+    return redirect(request.META.get('HTTP_REFERER'))
 
 
 @login_required
@@ -118,7 +133,7 @@ def subscription(request, id_race):
         interaction = Interaction(user=request.user, race=Race.objects.get(pk=id_race), interaction='REGISTERED')
         interaction.save()
 
-    return redirect('index')
+    return redirect(request.META.get('HTTP_REFERER'))
 
 
 @login_required
@@ -126,7 +141,7 @@ def undo_interaction(request, id_race):
 
     Interaction.objects.filter(race_id=id_race, user_id=request.user).delete()
 
-    return redirect('index')
+    return redirect(request.META.get('HTTP_REFERER'))
 
 
 @login_required

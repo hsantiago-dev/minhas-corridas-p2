@@ -60,29 +60,29 @@
 <body style="background-color: #282A36;">
     <div class="background-card mx-auto">
         <div class="mx-1 pt-3 pb-3 row justify-content-between align-items-center">
-            <a href="/" class="col-2 btn btn-secondary btn-general">
+            <a href="/races_created/" class="col-2 btn btn-secondary btn-general">
                 <span class="material-symbols-outlined py-1"> home </span>
             </a>
             <span class="col-2 material-symbols-outlined py-1" style="color: #50FA7B"> sports_score </span>
         </div>
-        <h2 class="name col-12 mx-auto text-center">ADICIONE UMA NOVA CORRIDA</h2>
+        <h2 class="name col-12 mx-auto text-center">{% if race is null %} ADICIONE UMA NOVA CORRIDA {% else %} EDITE SUA CORRIDA {% endif %}</h2>
         <div class="mx-auto">
-            <form name="form" id="form" action="/insert_race/" method="post">
+            <form name="form" id="form" action="{% if race %}/update_race/{{ race.id }}/{% else %}/insert_race/{% endif %}" method="post">
                 {% csrf_token %}
                 <div class="form-group mt-3">
                     <input type="text" class="form-control" id="id_name" name="name" placeholder="Nome da Corrida" required value="{{ race.name }}">
                 </div>
                 <div class="form-group d-flex align-items-center mt-3">
                     <label for="id_registration_deadline" class="label">Data de inscrição limite:</label>
-                    <input type="date" class="form-control" id="id_registration_deadline" name="registration_deadline" required value="{{ race.registration_deadline }}">
+                    <input type="date" class="form-control" id="id_registration_deadline" name="registration_deadline" required value="{{ race.registration_deadline|date:'Y-m-d' }}">
                 </div>
                 <div class="form-group d-flex align-items-center mt-3">
                     <label for="id_start_date" class="label">Data da corrida:</label>
-                    <input type="date" class="form-control" id="id_start_date" name="start_date" required value="{{ race.start_date }}">
+                    <input type="date" class="form-control" id="id_start_date" name="start_date" required value="{{ race.start_date|date:'Y-m-d' }}">
                 </div>
                 <div class="form-group d-flex align-items-center mt-3">
                     <label for="id_start_hour" class="label">Horário de início da corrida:</label>
-                    <input type="time" class="form-control" id="id_start_hour" name="start_hour" required value="{{ race.start_hour }}">
+                    <input type="time" class="form-control" id="id_start_hour" name="start_hour" required value="{{ race.start_hour|time:'H:i' }}">
                 </div>
                 <div class="form-group d-flex align-items-center mt-3">
                     <label for="id_distance" class="label">Distância da corrida:</label>
