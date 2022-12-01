@@ -27,13 +27,15 @@ class Interaction(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.RESTRICT)
     race = models.ForeignKey(Race, on_delete=models.RESTRICT)
     interaction = models.CharField(max_length=50)
+    receive_notifications = models.BooleanField(default=True)
 
     def __str__(self):
         return self.interaction
 
 
 class RaceCommentary(models.Model):
-    interaction = models.ForeignKey(Interaction, on_delete=models.CASCADE)
+    race = models.ForeignKey(Race, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     date = models.DateTimeField()
     commentary = models.CharField(max_length=255)
     tag = models.CharField(max_length=50)

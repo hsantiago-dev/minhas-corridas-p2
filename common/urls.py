@@ -20,5 +20,8 @@ urlpatterns = [
     path('edit_race/<int:id_race>/', views.edit_race, name='edit_race'),
     path('mark_interest/<int:id_race>/', views.mark_interest, name='mark_interest'),
     path('subscription/<int:id_race>/', views.subscription, name='subscription'),
+    path('undo_interaction/<int:id_race>/', views.undo_interaction, name='undo_interaction'),
+    path('commentaries_race/<int:id_race>/', views.commentaries_race, name='commentaries_race'),
+    path('put_commentary/<int:id_race>/', views.put_commentary, name='put_commentary'),
     path('accounts/', include('django.contrib.auth.urls')),
 ]

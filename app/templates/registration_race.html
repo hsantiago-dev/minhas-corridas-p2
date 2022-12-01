@@ -66,7 +66,6 @@
             <span class="col-2 material-symbols-outlined py-1" style="color: #50FA7B"> sports_score </span>
         </div>
         <h2 class="name col-12 mx-auto text-center">ADICIONE UMA NOVA CORRIDA</h2>
-        {{ race }}
         <div class="mx-auto">
             <form name="form" id="form" action="/insert_race/" method="post">
                 {% csrf_token %}
@@ -75,31 +74,31 @@
                 </div>
                 <div class="form-group d-flex align-items-center mt-3">
                     <label for="id_registration_deadline" class="label">Data de inscrição limite:</label>
-                    <input type="date" class="form-control" id="id_registration_deadline" name="registration_deadline" required>
+                    <input type="date" class="form-control" id="id_registration_deadline" name="registration_deadline" required value="{{ race.registration_deadline }}">
                 </div>
                 <div class="form-group d-flex align-items-center mt-3">
                     <label for="id_start_date" class="label">Data da corrida:</label>
-                    <input type="date" class="form-control" id="id_start_date" name="start_date" required>
+                    <input type="date" class="form-control" id="id_start_date" name="start_date" required value="{{ race.start_date }}">
                 </div>
                 <div class="form-group d-flex align-items-center mt-3">
                     <label for="id_start_hour" class="label">Horário de início da corrida:</label>
-                    <input type="time" class="form-control" id="id_start_hour" name="start_hour" required>
+                    <input type="time" class="form-control" id="id_start_hour" name="start_hour" required value="{{ race.start_hour }}">
                 </div>
                 <div class="form-group d-flex align-items-center mt-3">
                     <label for="id_distance" class="label">Distância da corrida:</label>
-                    <input type="number" class="form-control" id="id_distance" name="distance" required>
+                    <input type="number" class="form-control" id="id_distance" name="distance" required value="{{ race.distance }}">
                     <span class="input-group-text" id="basic-distance">em metros</span>
                 </div>
                 <div class="form-group d-flex align-items-center mt-3">
                     <label for="id_registration_value" class="label">Valor de inscrição da corrida:</label>
                     <span class="input-group-text" id="basic-registration_value">R$</span>
-                    <input type="number" step=".01" value="0.01" class="form-control" id="id_registration_value" name="registration_value" required>
+                    <input type="number" step=".01" value="{{ race.registration_value }}" class="form-control" id="id_registration_value" name="registration_value" required>
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" class="form-control" id="id_registration_link" name="registration_link" placeholder="Link de inscrição da corrida" required>
+                    <input type="text" class="form-control" id="id_registration_link" name="registration_link" placeholder="Link de inscrição da corrida" required value="{{ race.registration_link }}">
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" class="form-control" id="id_city" name="city" placeholder="Cidade que ocorrerá a corrida" required>
+                    <input type="text" class="form-control" id="id_city" name="city" placeholder="Cidade que ocorrerá a corrida" required value="{{ race.city }}">
                 </div>
                 <div class="form-group mt-4 row">
                     <input type="submit" class="btn btn-success col-10 mx-auto py-3" value="PUBLICAR" >
