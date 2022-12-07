@@ -86,6 +86,11 @@
     <div class="pt-4 px-4 d-flex justify-content-end">
         {% if user.is_authenticated %}
             <div class="d-flex">
+                <form action="/sticky_notes/" style="margin-right: 20px;">
+                    <button type="submit" class="btn btn-info btn-general">
+                        LEMBRETES
+                    </button>
+                </form>
                 <form action="/accounts/logout/">
                     <span class="link-register">Olá <b>{{ user.name }}</b>!</span>
                     <button type="submit" class="btn btn-secondary btn-general">
@@ -121,6 +126,30 @@
         </ul>
     </div>
     <div class="background-card d-flex flex-column align-items-center">
+        {% if user.is_authenticated %}
+            <form action="/" method="GET">
+                <div class="d-flex mt-2">
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1">R$</span>
+                        <input type="text" class="form-control" name="max_value" value="{{ max_value_selected }}" placeholder="Valor máximo">
+                    </div>
+                    <select class="form-select" name="city" style="margin-left: 10px;">
+                        <option value="" {% if not city_selected %} selected{% endif %}>Todos</option>
+                        {% for city in cities %}
+                            <option value="{{ city }}" {% if city == city_selected %} selected{% endif %}>{{ city }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="month" class="form-control" name="month" value="{{ month_selected }}" style="margin-left: 10px;">
+                    <button type="submit" class="btn btn-info btn-general" style="margin-left: 10px;">
+                        FILTRAR
+                    </button>
+                </div>
+            </form>
+        {% else %}
+            <div class="d-flex mt-2">
+                <input type="month" class="form-control" name="month" readonly min="{{ month_selected }}" value="{{ month_selected }}">
+            </div>
+        {% endif %}
         {% for race in races %}
             <div class="card-race mt-4">
                 <div class="d-flex justify-content-between">

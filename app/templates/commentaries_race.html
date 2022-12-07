@@ -94,7 +94,7 @@
 <body style="background-color: #282A36;">
     <div class="background-card mx-auto">
         <div class="mx-1 row justify-content-between align-items-center">
-            <a href="/" class="col-2 btn btn-secondary btn-general">
+            <a href="javascript:history.back()" class="col-2 btn btn-secondary btn-general">
                 <span class="material-symbols-outlined py-1"> arrow_back </span>
             </a>
             <span class="col-2 material-symbols-outlined py-1" style="color: #50FA7B"> chat </span>
@@ -146,7 +146,7 @@
                     <div class="d-flex mt-2 justify-content-between ">
                         <div class="d-flex align-items-center">
                             <span class="label">Feito pelo usuário: </span>
-                            <span class="value">{{ commentary.user_id }}</span>
+                            <span class="value">{{ commentary.user.name }}</span>
                         </div>
                         <div class="d-flex align-items-center" style="min-width: 150px;">
                             <span class="label">Data:</span>

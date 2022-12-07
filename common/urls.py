@@ -24,5 +24,7 @@ urlpatterns = [
     path('undo_interaction/<int:id_race>/', views.undo_interaction, name='undo_interaction'),
     path('commentaries_race/<int:id_race>/', views.commentaries_race, name='commentaries_race'),
     path('put_commentary/<int:id_race>/', views.put_commentary, name='put_commentary'),
+    path('sticky_notes/', views.sticky_notes, name='sticky_notes'),
+    path('undo_notifications/<int:id_race>', views.undo_notifications, name='undo_notifications'),
     path('accounts/', include('django.contrib.auth.urls')),
 ]

@@ -86,6 +86,11 @@
     <div class="pt-4 px-4 d-flex justify-content-end">
         {% if user.is_authenticated %}
             <div class="d-flex">
+                <form action="/sticky_notes/" style="margin-right: 20px;">
+                    <button type="submit" class="btn btn-info btn-general">
+                        LEMBRETES
+                    </button>
+                </form>
                 <form action="/accounts/logout/">
                     <span class="link-register">Olá <b>{{ user.name }}</b>!</span>
                     <button type="submit" class="btn btn-secondary btn-general">
